@@ -1,0 +1,6 @@
+anaconda_config_version: 1
+upstream_sources:
+  - pypi:
+      identifier: r-h2o
+      strip_prefix: v
+    packages: [r-h2o]
