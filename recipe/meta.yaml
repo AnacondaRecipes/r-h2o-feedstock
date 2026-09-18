@@ -20,7 +20,7 @@ requirements:
   build:
     - {{ posix }}zip  # [win]
   host:
-    - libcurl
+    - libcurl {{ libcurl }}
     - r-base
     - r-codetools
     - r-rcurl
@@ -42,6 +42,7 @@ about:
   home: https://h2o.ai/
   license: Apache-2.0
   license_family: APACHE
+  license_file: LICENSE
   summary: R Interface for H2O
   description: R interface for H2O, the scalable open source machine learning platform.
   dev_url: https://github.com/h2oai/h2o-3
