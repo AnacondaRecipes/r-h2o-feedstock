@@ -22,7 +22,7 @@ requirements:
     - {{ posix }}zip  # [win]
   host:
     - libcurl {{ libcurl }}
-    - r-base
+    - r-base <4 # [win]
     - r-codetools
     - r-rcurl
     - r-jsonlite
