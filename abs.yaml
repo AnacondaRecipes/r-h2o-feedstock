@@ -1,0 +1,11 @@
+name: r-h2o
+version: 1
+
+build:
+  script: conda-build recipe/
+
+channels:
+  - defaults
+
+upload:
+  channel: services
