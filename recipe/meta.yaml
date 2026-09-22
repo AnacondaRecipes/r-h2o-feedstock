@@ -1,5 +1,5 @@
 {% set name = "r-h2o" %}
-{% set version = "3.46.0.7" %}
+{% set version = "3.46.0.11" %}
 {% set posix = "m2-" if win else "" %}
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://h2o-release.s3.amazonaws.com/h2o/rel-{{ version.split(".")[:-1] | join(".") }}/{{ version.split(".")[-1] }}/h2o-{{ version }}.zip
-  sha256: a7ceeb7e563dd21112e53dc4798b94f2119aac5874e8f2ab6e1b96699cf810ec
+  sha256: 20c7b86a4b651972a57ef476fac301953322f9359bf9cc6c491f776e14d449ed
 
 build:
   number: 0
