@@ -1,22 +1,22 @@
 r_base:
   - "3.6.0"
   - "3.6.1"
-  - "4.2.0"  # [not win]
-  - "4.3.1"  # [not win]
+  - "4.2.0"
+  - "4.3.1"
 
 # Pair R versions with compatible gfortran
 libgfortran_ng:
   - "7"
   - "7"
-  - "11"  # [not win]
-  - "11"  # [not win]
+  - "11"
+  - "11"
 
 # r-statmod only available for R 4.2+
 with_statmod:
   - "false"
   - "false"
-  - "true"  # [not win]
-  - "true"  # [not win]
+  - "true"
+  - "true"
 
 zip_keys:
   - [r_base, libgfortran_ng, with_statmod]
