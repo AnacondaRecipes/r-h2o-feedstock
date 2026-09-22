@@ -12,7 +12,7 @@ source:
 
 build:
   number: 0
-  skip: true # [aarch64 or arm64]
+  skip: true  # [aarch64 or arm64 or (win and r_base.startswith("4"))]
   rpaths:
     - lib/R/lib/
     - lib/
