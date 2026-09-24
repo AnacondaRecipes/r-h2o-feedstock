@@ -1,0 +1,34 @@
+r_base:
+  - "3.6.0"
+  - "3.6.1"
+  - "4.2.0"
+  - "4.3.1"
+
+# Pair R versions with compatible gfortran
+libgfortran_ng:
+  - "7"
+  - "7"
+  - "11"
+  - "11"
+
+# r-statmod only available for R 4.2+
+with_statmod:
+  - "false"
+  - "false"
+  - "true"
+  - "true"
+
+# libcurl pinned per r_base (krb5 compatibility)
+libcurl:
+  - ">=7.63.0,<7.70"
+  - ">=7.63.0,<7.70"
+  - ">=7.82.0,<8"
+  - ">=8.1.1,<9"
+
+zip_keys:
+  - [r_base, libgfortran_ng, with_statmod, libcurl]
+
+pin_run_as_build:
+  r-base:
+    min_pin: x.x
+    max_pin: x.x

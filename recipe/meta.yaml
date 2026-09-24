@@ -1,45 +1,57 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set name = "r-h2o" %}
+{% set version = "3.46.0.11" %}
+{% set posix = "m2-" if win else "" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  url: https://h2o-release.s3.amazonaws.com/h2o/rel-{{ version.split(".")[:-1] | join(".") }}/{{ version.split(".")[-1] }}/h2o-{{ version }}.zip
+  sha256: 20c7b86a4b651972a57ef476fac301953322f9359bf9cc6c491f776e14d449ed
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  number: 2
+  skip: true  # [aarch64 or arm64 or (win and r_base.startswith("4"))]
+  rpaths:
+    - lib/R/lib/
+    - lib/
 
 requirements:
+  build:
+    - {{ posix }}zip  # [win]
   host:
-    - python
-    - pip
+    - libcurl {{ libcurl }}  # [not win]
+    - r-base {{ r_base }}
+    - r-codetools
+    - r-rcurl
+    - r-jsonlite
+    - openjdk <18
   run:
-    - python
+    - r-base
+    - r-rcurl
+    - r-jsonlite
+    - r-statmod  # [with_statmod == "true" and not win]
+    - openjdk <18
 
 test:
-  imports:
-    - {{ name.replace('-', '.') }}
-  requires:
-    - pip
   commands:
-    - pip check
+    - $R -e "library(h2o)"  # [not win]
+    - "\"%R%\" -e \"library(h2o)\""  # [win]
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
-  description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
+  home: https://h2o.ai/
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  summary: R Interface for H2O
+  description: R interface for H2O, the scalable open source machine learning platform.
+  dev_url: https://github.com/h2oai/h2o-3
+  doc_url: https://docs.h2o.ai/
 
 extra:
+  anaconda-services:
+    ref:
+      - https://anaconda.zendesk.com/agent/tickets/125283
   recipe-maintainers:
-    - Jrice1317
+    - anaconda-services
