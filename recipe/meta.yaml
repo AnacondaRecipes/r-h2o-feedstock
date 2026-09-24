@@ -21,7 +21,9 @@ requirements:
   build:
     - {{ posix }}zip  # [win]
   host:
-    - libcurl {{ libcurl }}
+    - libcurl >=8.1.1,<9  # [r_base == "4.3.1"]
+    - libcurl >=7.82.0,<8  # [r_base == "4.2.0"]
+    - libcurl >=7.63.0,<7.70  # [r_base == "3.6.0" or r_base == "3.6.1"]
     - r-base {{ r_base }}
     - r-codetools
     - r-rcurl
