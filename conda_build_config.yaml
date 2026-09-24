@@ -18,8 +18,15 @@ with_statmod:
   - "true"
   - "true"
 
+# libcurl pinned per r_base (krb5 compatibility)
+libcurl:
+  - ">=7.63.0,<7.70"
+  - ">=7.63.0,<7.70"
+  - ">=7.82.0,<8"
+  - ">=8.1.1,<9"
+
 zip_keys:
-  - [r_base, libgfortran_ng, with_statmod]
+  - [r_base, libgfortran_ng, with_statmod, libcurl]
 
 pin_run_as_build:
   r-base:

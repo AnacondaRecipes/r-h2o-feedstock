@@ -11,7 +11,7 @@ source:
   sha256: 20c7b86a4b651972a57ef476fac301953322f9359bf9cc6c491f776e14d449ed
 
 build:
-  number: 1
+  number: 2
   skip: true  # [aarch64 or arm64 or (win and r_base.startswith("4"))]
   rpaths:
     - lib/R/lib/
@@ -21,9 +21,7 @@ requirements:
   build:
     - {{ posix }}zip  # [win]
   host:
-    - libcurl >=8.1.1,<9  # [r_base == "4.3.1"]
-    - libcurl >=7.82.0,<8  # [r_base == "4.2.0"]
-    - libcurl >=7.63.0,<7.70  # [r_base == "3.6.0" or r_base == "3.6.1"]
+    - libcurl {{ libcurl }}  # [not win]
     - r-base {{ r_base }}
     - r-codetools
     - r-rcurl
